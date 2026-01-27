@@ -7,4 +7,7 @@ export default defineNuxtConfig({
   modules: ["@nuxt/ui"],
   css: ["~/assets/css/main.css"],
   vite: { plugins: [tailwindcss()] },
+  runtimeConfig: {
+    tornApiKey: process.env.TORN_API_KEY,
+  },
 });
