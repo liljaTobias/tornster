@@ -11,7 +11,7 @@ const { data, pending, error } = useFetch('/api/torn/attacks', {
     <div v-else-if="error">Something went wrong</div>
 
     <div v-else class="space-y-4">
-      <UCard v-for="(attack, id) in data.attacks" :key="id">
+      <UCard v-for="(attack, id) in data?.attacks" :key="id">
         <template #header>
           {{ attack.attacker_name }} -> {{ attack.defender_name }}
         </template>

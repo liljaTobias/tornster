@@ -6,7 +6,7 @@ const { data } = useFetch<AttacksResponse>("/api/torn/attacks", {
 });
 
 const { data: factionBasicData } = await useFetch(
-  "/api/torn/faction/basic?ID=53421",
+  () => "/api/torn/faction/basic?ID=53421",
   {
     server: true,
   },
@@ -19,7 +19,6 @@ const attacks = data.value?.attacks;
   <div class="p-6 max-w-4xl mx-auto flex flex-col gap-10">
     <ProfileCard />
     <BarsCard />
-    <FactionCard />
     <WarCard />
     <h1 class="text-2xl font-bold mb-4">Attacks</h1>
     <div v-if="attacks?.length === 0">No attacks found.</div>

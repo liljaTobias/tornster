@@ -6,14 +6,18 @@
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div class="flex justify-between items-center">
-          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+          <NuxtLink class="text-2xl font-bold text-gray-900 dark:text-white" :to="`/`">
             Tornster
-          </h1>
+          </NuxtLink>
+          <NuxtLink :to="`/faction/${53421}`">
+            Faction
+          </NuxtLink>
           <UButton
             icon="i-heroicons-moon-20-solid"
             color="gray"
             variant="ghost"
           />
+          
         </div>
       </div>
     </header>
