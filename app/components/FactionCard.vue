@@ -6,7 +6,7 @@ const { factionId } = defineProps<{
 }>()
 
 const { data: basicInfo } = await useFetch<Faction>(
-  () => `/api/torn/faction/basic?ID=${factionId}`,
+  `/api/torn/faction/basic?ID=${factionId}`,
   {
     server: true,
   },
