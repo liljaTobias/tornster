@@ -3,4 +3,5 @@ export const ROUTES = {
   WARS: "/wars",
   FACTIONS: "/faction",
   PROFILE: "/profile",
+  LOGIN: "/login",
 } as const;
