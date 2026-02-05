@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { UserProfile } from "#shared/types/torn/user";
 
-const { data } = await useFetch<UserProfile>("/api/torn/userbasic", {
+const { data } = await useTornFetch<UserProfile>("/api/torn/userbasic", {
   server: true,
 });
 
@@ -11,7 +11,7 @@ const profile = data.value;
 <template>
   <UCard>
     <template #header>
-      <h2 class="text-lg font-semibold">User Profile</h2>
+      <h2 class="text-lg font-semibold">Torn character</h2>
     </template>
 
     <div v-if="profile" class="space-y-2 text-sm">
