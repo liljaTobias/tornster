@@ -6,18 +6,18 @@ type FactionWarResponse = {
 };
 
 export default defineEventHandler(async (event) => {
-  const { tornApiKey } = useRuntimeConfig();
   const { ID } = getQuery(event);
+  const auth = getHeader(event, "Authorization");
 
-  if (!tornApiKey || !ID) {
-    throw createError("No API key or ID provided");
+  if (!ID) {
+    throw createError("No ID provided");
   }
 
   const res = await $fetch<FactionWarResponse>(
     `${BASE_URL}/faction/${ID}/rankedwars`,
     {
       headers: {
-        Authorization: `ApiKey ${tornApiKey}`,
+        Authorization: auth || "",
       },
     },
   );
