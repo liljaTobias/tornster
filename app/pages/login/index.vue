@@ -23,6 +23,7 @@ const handleSubmit = async (
     name: event.data.name,
     email: event.data.email,
     apiKey: event.data.apiKey,
+    faction: null,
   };
   login(newUser);
 };

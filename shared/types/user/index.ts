@@ -3,4 +3,5 @@ export type User = {
   name: string;
   email: string;
   apiKey: string;
+  faction: number | null;
 };
