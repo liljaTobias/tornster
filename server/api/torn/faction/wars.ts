@@ -6,23 +6,30 @@ type FactionWarResponse = {
 };
 
 export default defineEventHandler(async (event) => {
+  const auth = getHeader(event, "Authorization") ?? "";
   const { ID } = getQuery(event);
-  const auth = getHeader(event, "Authorization");
 
-  if (!ID) {
-    throw createError("No ID provided");
+  if (ID) {
+    const res = await $fetch<FactionWarResponse>(
+      `${BASE_URL}/faction/${ID}/rankedwars`,
+      {
+        headers: {
+          Authorization: auth,
+        },
+      },
+    );
+
+    return res.rankedwars;
   }
 
   const res = await $fetch<FactionWarResponse>(
-    `${BASE_URL}/faction/${ID}/rankedwars`,
+    `${BASE_URL}/faction/rankedwars`,
     {
       headers: {
-        Authorization: auth || "",
+        Authorization: auth,
       },
     },
   );
-
-  console.log(res);
 
   return res.rankedwars;
 });

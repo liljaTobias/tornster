@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { FactionWar } from "~~/shared/types/torn/faction";
 
-const myFactionID = 53421; // Replace with dynamic faction ID as needed
+const { user } = useUser();
+const myFactionID = user.value?.faction;
 
-const { data, error, pending } = await useTornFetch<FactionWar[]>(
+const { data, error } = await useTornFetch<FactionWar[]>(
   `/api/torn/faction/wars?ID=${myFactionID}`,
   {
     server: true,
@@ -51,10 +52,7 @@ function formatDate(dateStr: number) {
       <template #header>
         <h1 class="text-3xl font-bold text-center">Faction Wars</h1>
       </template>
-      <div v-if="pending" class="flex justify-center items-center py-12">
-        <span class="ml-4 text-gray-500">Loading wars...</span>
-      </div>
-      <div v-else-if="error" class="text-center text-red-500 my-8">
+      <div v-if="error" class="text-center text-red-500 my-8">
         {{ error }}
       </div>
       <div v-else>
