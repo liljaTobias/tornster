@@ -27,7 +27,9 @@ const items = [
   },
 ];
 
-const isActive = (to: string) => route.path === to;
+const isActive = (to: string) => {
+  return route.path.includes(to);
+};
 </script>
 
 <template>

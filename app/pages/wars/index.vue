@@ -22,15 +22,20 @@ const getOpponentFaction = (war: FactionWar) => {
 };
 
 const getStatus = (war: FactionWar) => {
+  if (war.end === 0) {
+    return "scheduled";
+  }
+
   if (war.end) {
     return "ended";
   }
   return "ongoing";
 };
 
-const handleViewDetails = (war: FactionWar) => {
+const handleViewDetails = async (war: FactionWar) => {
   // Implement navigation to war details page or modal here
   console.log("View details for war:", war);
+  await navigateTo(`/wars/${war.id}`);
 };
 
 function formatDate(dateStr: number) {
@@ -39,7 +44,7 @@ function formatDate(dateStr: number) {
     return new Intl.DateTimeFormat(undefined, {
       dateStyle: "medium",
       timeStyle: "short",
-    }).format(new Date(dateStr));
+    }).format(new Date(dateStr * 1000));
   } catch {
     return dateStr;
   }
@@ -82,7 +87,9 @@ function formatDate(dateStr: number) {
                   :class="
                     getStatus(war) === 'ongoing'
                       ? 'bg-green-100 text-green-700'
-                      : 'bg-gray-100 text-gray-500'
+                      : getStatus(war) === 'ended'
+                        ? 'bg-red-100 text-red-500'
+                        : 'bg-yellow-100 text-yellow-500'
                   "
                 >
                   {{ getStatus(war) }}
