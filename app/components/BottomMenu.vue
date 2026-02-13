@@ -28,7 +28,10 @@ const items = [
 ];
 
 const isActive = (to: string) => {
-  return route.path.includes(to);
+  if (to === ROUTES.WARS) {
+    return route.path.startsWith(ROUTES.WARS);
+  }
+  return route.path === to;
 };
 </script>
 
